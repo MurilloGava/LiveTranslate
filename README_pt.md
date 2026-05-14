@@ -284,7 +284,7 @@ AGRADECIMENTOS
 ATUALIZAÇÃO 
 --------------------------------------------------------------------------------
 - MODO IA LOCAL
-- USUARIO TEM TOTAL CONTROLE DA BARRA DE LEGENDAS NO ARQUIVO user_settings.json
+- A Janela de Legendas agora pode ser totalmente arrastada pelo usuário utilizando o mouse (maior flexibilidade da interface e controle de posicionamento).
 
 --------------------------------------------------------------------------------
 LICENÇA
