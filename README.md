@@ -354,7 +354,13 @@ main.py                 Entry point & pipeline
 - [Anime-Whisper](https://huggingface.co/litagin/anime-whisper) — Japanese anime/galgame ASR
 - [Silero VAD](https://github.com/snakers4/silero-vad) — Voice activity detection
 
+--------------------------------------------------------------------------------
+UPDATE
+--------------------------------------------------------------------------------
+- LOCAL AI MODE
+- USER HAS FULL CONTROL OF THE SUBTITLE BAR POSITION IN THE user_settings.json FILE
 
+  
 ## License
 
 [MIT License](LICENSE)
