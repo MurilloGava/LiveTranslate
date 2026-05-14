@@ -1,7 +1,7 @@
-================================================================================
+--------------------------------------------------------------------------------
                               LIVETRANSLATE
                           Tradução em Tempo Real
-================================================================================
+--------------------------------------------------------------------------------
 
 LiveTranslate - Tradução de áudio em tempo real para Windows.
 
@@ -12,18 +12,18 @@ sobreposição transparente.
 Funciona com qualquer áudio do sistema: vídeos, lives, chat de voz.
 Não precisa modificar o player.
 
-================================================================================
+--------------------------------------------------------------------------------
 REQUISITOS
-================================================================================
+--------------------------------------------------------------------------------
 
 - Sistema: Windows 10 ou 11
 - Python: 3.10 ou superior
-- GPU (recomendado): NVIDIA com CUDA 12.6 (RTX 50xx requer CUDA 12.8)
-- Rede: Acesso a uma API de tradução
+- GPU (recomendado): NVIDIA com CUDA 12.6 (RTX 30xx requer CUDA 12.8)
+- Rede: Acesso a uma API de tradução (não necessário)
 
-================================================================================
+--------------------------------------------------------------------------------
 FUNCIONALIDADES
-================================================================================
+--------------------------------------------------------------------------------
 
 - Pipeline em tempo real: Áudio do sistema -> VAD -> ASR -> Tradução -> Sobreposição
 - Múltiplos motores ASR: faster-whisper, SenseVoice, FunASR Nano, Anime-Whisper
@@ -38,9 +38,9 @@ FUNCIONALIDADES
 - Gerenciamento automático de modelos (ModelScope / HuggingFace)
 - Benchmark integrado
 
-================================================================================
+--------------------------------------------------------------------------------
 CONFIGURAÇÃO DA POSIÇÃO DA JANELA DE LEGENDAS
-================================================================================
+--------------------------------------------------------------------------------
 
 No arquivo user_settings.json, você define permanentemente a posição da legenda:
 
@@ -54,21 +54,41 @@ No arquivo user_settings.json, você define permanentemente a posição da legen
 IMPORTANTE: A posição Y (window_y) NÃO é alterada automaticamente.
 Você define uma vez e ela permanece fixa, mesmo quando o texto muda de tamanho.
 
-================================================================================
+--------------------------------------------------------------------------------
 PROVEDORES LLM SUPORTADOS
-================================================================================
+--------------------------------------------------------------------------------
 
 LM Studio:
   http://localhost:1234/v1
   http://127.0.0.1:1234/v1
 
 Ollama:
-  http://localhost:11434
-  http://127.0.0.1:11434
+  http://localhost:11434/v1
+  http://127.0.0.1:11434/v1
 
-================================================================================
+OpenAI (official):
+  https://api.openai.com/v1
+  (API Key)
+
+OpenRouter:
+  https://openrouter.ai/api/v1
+  (API Key)
+
+Groq:
+  https://api.groq.com/openai/v1
+  (API Key)
+
+Together AI:
+  https://api.together.xyz/v1
+  (API Key)
+
+Fireworks AI:
+  https://api.fireworks.ai/inference/v1
+  (API Key)
+
+--------------------------------------------------------------------------------
 IDIOMAS SUPORTADOS PELO TRADUTOR (44 idiomas)
-================================================================================
+--------------------------------------------------------------------------------
 
 Código | Idioma
 -------|----------------
@@ -102,9 +122,9 @@ fi     | Finnish (Finlandês)
 no     | Norwegian (Norueguês)
 he     | Hebrew (Hebraico)
 
-================================================================================
+--------------------------------------------------------------------------------
 INSTALAÇÃO RÁPIDA
-================================================================================
+--------------------------------------------------------------------------------
 
 1. Clone o repositório:
    git clone https://github.com/TheDeathDragon/LiveTranslate.git
@@ -116,18 +136,18 @@ INSTALAÇÃO RÁPIDA
 
 Para atualizar: execute update.bat
 
-================================================================================
+--------------------------------------------------------------------------------
 PRIMEIRA INICIALIZAÇÃO
-================================================================================
+--------------------------------------------------------------------------------
 
 1. O assistente de configuração aparece
 2. Escolha a fonte de download (ModelScope ou HuggingFace)
 3. Os modelos Silero VAD + SenseVoice baixam automaticamente (~1GB)
 4. A interface principal aparece quando estiver pronto
 
-================================================================================
+--------------------------------------------------------------------------------
 CONFIGURAÇÃO DA API DE TRADUÇÃO
-================================================================================
+--------------------------------------------------------------------------------
 
 Abra Configurações -> Guia Tradução:
 
@@ -136,9 +156,9 @@ Abra Configurações -> Guia Tradução:
 - Model: deepseek-chat (exemplo)
 - Proxy: none / system / URL personalizada
 
-================================================================================
+--------------------------------------------------------------------------------
 MODELOS RECOMENDADOS PARA TRADUÇÃO DE LIVE
-================================================================================
+--------------------------------------------------------------------------------
 
 1. Qwen2.5-0.5B-Instruct (MELHOR ESCOLHA)
    - Rápido, baixa latência
@@ -149,36 +169,36 @@ MODELOS RECOMENDADOS PARA TRADUÇÃO DE LIVE
    - Maior (1B), qualidade boa
    - Pode ser mais lento
 
-================================================================================
+--------------------------------------------------------------------------------
 ARQUITETURA DO PROJETO
-================================================================================
+--------------------------------------------------------------------------------
+Audio (WASAPI 32ms) → VAD (Silero) → ASR → LLM Translation → Overlay
+         ↑ optional mic mix-in
+--------------------------------------------------------------------------------
+main.py                 Entry point & pipeline
+├── audio_capture.py    WASAPI loopback + mic mix-in
+├── vad_processor.py    Silero VAD
+├── asr_engine.py       faster-whisper backend
+├── asr_sensevoice.py   SenseVoice backend
+├── asr_funasr_nano.py  FunASR Nano backend
+├── asr_anime_whisper.py Anime-Whisper backend (ja anime/galgame)
+├── translator.py       OpenAI-compatible client (streaming, JSON schema, context)
+├── model_manager.py    Model download & cache
+├── subtitle_overlay.py PyQt6 overlay
+├── control_panel.py    Settings UI (7 tabs)
+├── dialogs.py          Wizard, download & model config dialogs
+└── benchmark.py        Translation benchmark
 
-main.py                 - Entrada principal e pipeline
-audio_capture.py        - Loopback WASAPI + mixagem de microfone
-vad_processor.py        - Silero VAD (detecção de voz)
-asr_engine.py           - faster-whisper
-asr_sensevoice.py       - SenseVoice
-asr_funasr_nano.py      - FunASR Nano
-asr_anime_whisper.py    - Anime-Whisper (japonês anime/galgame)
-translator.py           - Cliente OpenAI (streaming, JSON schema, contexto)
-model_manager.py        - Download e cache de modelos
-subtitle_overlay.py     - Sobreposição PyQt6
-subtitle_window.py      - Janela de legendas para OBS
-control_panel.py        - Interface de configurações (7 abas)
-dialogs.py              - Assistentes e diálogos
-benchmark.py            - Benchmark de tradução
-transcript_writer.py    - Salvamento automático de transcrições
-
-================================================================================
+--------------------------------------------------------------------------------
 AGRADECIMENTOS
-================================================================================
+--------------------------------------------------------------------------------
 
 - faster-whisper: Inferência Whisper via CTranslate2
 - FunASR: SenseVoice / Fun-ASR-Nano
 - Anime-Whisper: ASR para japonês (anime/galgame)
 - Silero VAD: Detecção de atividade de voz
 
-================================================================================
+--------------------------------------------------------------------------------
 LICENÇA
 ================================================================================
 
