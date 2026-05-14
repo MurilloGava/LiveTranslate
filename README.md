@@ -216,8 +216,35 @@ FIRST LAUNCH
 --------------------------------------------------------------------------------
 TRANSLATION API SETUP
 --------------------------------------------------------------------------------
+## First Launch
 
-Open Settings -> Translation tab:
+1. Setup wizard appears — choose download source (ModelScope / HuggingFace) and cache path
+2. Silero VAD + SenseVoice models download automatically (~1GB)
+3. Main UI appears when ready
+
+## Translation API
+
+
+Settings → Translation tab:
+
+Local
+| Parameter | Example |
+|-----------|---------|
+| API Base | `http://127.0.0.1:11434` |
+| API Key | (NOT NEEDED) |
+| Model | `qwen2.5:0.5b` |
+| Proxy | `none` / `system` / custom URL |
+
+
+Online
+| Parameter | Example |
+|-----------|---------|
+| API Base | `https://api.deepseek.com/v1` |
+| API Key | Your key |
+| Model | `deepseek-chat` |
+| Proxy | `none` / `system` / custom URL |
+
+
 
 1st option Local Ollama:
 - API Base: http://127.0.0.1:11434
@@ -307,33 +334,6 @@ pip install funasr --no-deps
 
 </details>
 
-## First Launch
-
-1. Setup wizard appears — choose download source (ModelScope / HuggingFace) and cache path
-2. Silero VAD + SenseVoice models download automatically (~1GB)
-3. Main UI appears when ready
-
-## Translation API
-
-
-Settings → Translation tab:
-
-Local
-| Parameter | Example |
-|-----------|---------|
-| API Base | `http://127.0.0.1:11434` |
-| API Key | (NOT NEEDED) |
-| Model | `qwen2.5:0.5b` |
-| Proxy | `none` / `system` / custom URL |
-
-
-Online
-| Parameter | Example |
-|-----------|---------|
-| API Base | `https://api.deepseek.com/v1` |
-| API Key | Your key |
-| Model | `deepseek-chat` |
-| Proxy | `none` / `system` / custom URL |
 
 ## Architecture
 
