@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-05-14
+- Improved support for local AI providers (Ollama and LM Studio), enhancing compatibility and stability with OpenAI-compatible endpoints
+- Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
+
 ## 2026-05-10
 - New "Export to file" menu: original / translation / combined formats, accessible from overlay right-click menu and tray menu
 - New "Transcript persistence" (enabled by default): each session creates 3 files under `transcripts/` (original / translation / combined), appended in real time per segment — no longer bounded by the 50-message overlay cap
