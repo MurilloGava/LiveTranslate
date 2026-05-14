@@ -66,19 +66,12 @@ FEATURES
 SUBTITLE WINDOW POSITION CONFIGURATION
 --------------------------------------------------------------------------------
 
-In the user_settings.json file, you permanently set the subtitle position:
+Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
 
 Example:
-```
-{
-  "subtitle_mode": {
-    "window_x": 900,
-    "window_y": 930
-  }
-}
-```
-IMPORTANT: The Y position (window_y) is NOT changed automatically.
-You set it once and it stays fixed, even when the text changes size.
+![LiveTranslate](screenshot/subtitle_window.png)
+
+
 
 --------------------------------------------------------------------------------
 SUPPORTED LLM PROVIDERS
