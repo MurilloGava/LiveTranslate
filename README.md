@@ -66,6 +66,7 @@ SUBTITLE WINDOW POSITION CONFIGURATION
 --------------------------------------------------------------------------------
 
 In the user_settings.json file, you permanently set the subtitle position:
+
 Example:
 ```
 {
