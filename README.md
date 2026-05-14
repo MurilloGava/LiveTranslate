@@ -52,7 +52,7 @@ no - Norwegian,
 he - Hebrew.
 
 --------------------------------------------------------------------------------------------------
-**English** | [中文](README_zh.md)
+**English** | [中文](README_zh.md) | [Português](README_pt.md)
 
 Real-time audio translation for Windows. Captures system audio (WASAPI loopback) and optional microphone input, runs ASR, translates via LLM API, and displays results in a transparent overlay.
 
