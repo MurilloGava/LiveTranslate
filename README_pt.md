@@ -148,7 +148,7 @@ INSTALAÇÃO RÁPIDA
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/TheDeathDragon/LiveTranslate.git
+git clone https://github.com/MurilloGava/LiveTranslate.git
 cd LiveTranslate
 ```
 
@@ -165,7 +165,7 @@ INSTALAÇÃO MANUAL
 ## Quick Start
 
 ```bash
-git clone https://github.com/TheDeathDragon/LiveTranslate.git
+git clone https://github.com/MurilloGava/LiveTranslate.git
 cd LiveTranslate
 ```
 
@@ -280,10 +280,16 @@ main.py                 Entry point & pipeline
 AGRADECIMENTOS
 --------------------------------------------------------------------------------
 
-- faster-whisper: Inferência Whisper via CTranslate2
-- FunASR: SenseVoice / Fun-ASR-Nano
-- Anime-Whisper: ASR para japonês (anime/galgame)
-- Silero VAD: Detecção de atividade de voz
+- [faster-whisper](https://github.com/SYSTRAN/faster-whisper) — Whisper inference via CTranslate2
+- [FunASR](https://github.com/modelscope/FunASR) — SenseVoice / Fun-ASR-Nano
+- [Anime-Whisper](https://huggingface.co/litagin/anime-whisper) — Japanese anime/galgame ASR
+- [Silero VAD](https://github.com/snakers4/silero-vad) — Voice activity detection
+
+--------------------------------------------------------------------------------
+ATUALIZAÇÃO 
+--------------------------------------------------------------------------------
+- MODO IA LOCAL
+- USUARIO TEM TOTAL CONTROLE DA BARRA DE LEGENDAS NO ARQUIVO user_settings.json
 
 --------------------------------------------------------------------------------
 LICENÇA
