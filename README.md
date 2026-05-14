@@ -18,7 +18,36 @@ Ollama: Ollama
 http://localhost:11434
 http://127.0.0.1:11434
 
-
+Language
+en - English
+ja - Japanese
+zh - Chinese
+ko - Korean
+fr - French
+de - German
+es - Spanish
+ru - Russian
+pt - Portuguese
+it - Italian
+nl - Dutch
+pl - Polish
+tr - Turkish
+ar - Arabic
+th - Thai
+vi - Vietnamese
+id - Indonesian
+ms - Malay
+hi - Hindi
+uk - Ukrainian
+cs - Czech
+ro - Romanian
+el - Greek
+hu - Hungarian
+sv - Swedish
+da - Danish
+fi - Finnish
+no - Norwegian
+he - Hebrew
 
 --------------------------------------------------------------------------------------------------
 **English** | [中文](README_zh.md)
