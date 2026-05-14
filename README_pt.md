@@ -196,7 +196,30 @@ PRIMEIRA INICIALIZAÇÃO
 CONFIGURAÇÃO DA API DE TRADUÇÃO
 --------------------------------------------------------------------------------
 
-Abra Configurações -> Guia Tradução:
+## Translation API
+
+Settings → Translation tab:
+
+Local
+| Parameter | Example |
+|-----------|---------|
+| API Base | `http://127.0.0.1:11434` |
+| API Key | (NOT NEEDED) |
+| Model | `qwen2.5:0.5b` |
+| Proxy | `none` / `system` / custom URL |
+
+
+Online
+| Parameter | Example |
+|-----------|---------|
+| API Base | `https://api.deepseek.com/v1` |
+| API Key | Your key |
+| Model | `deepseek-chat` |
+| Proxy | `none` / `system` / custom URL |
+
+
+
+Abra Configurações -> Guia Tradução: (Settings → Translation tab:)
 
 1° opção Local Ollama:
 - API Base: http://127.0.0.1:11434
