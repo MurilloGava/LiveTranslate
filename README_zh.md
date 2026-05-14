@@ -248,7 +248,9 @@ he   | 希伯来语
 
 ![LiveTranslate](screenshot/translate.png)
 
-![LiveTranslate](screenshot/translate2.png)
+--------------------------------------------------------------------------------
+
+![LiveTranslate](screenshot/zh.png)
 
 --------------------------------------------------------------------------------
 视频
@@ -262,22 +264,26 @@ he   | 希伯来语
 
 ## 架构
 
-音频 (WASAPI 32ms) → VAD (Silero) → ASR → LLM 翻译 → 覆盖层
-         ↑ 可选的麦克风混音
+```
+Audio (WASAPI 32ms) → VAD (Silero) → ASR → LLM Translation → Overlay
+         ↑ 可选麦克风混音
+```
 
-main.py                 入口点和主流水线
-├── audio_capture.py    WASAPI 回环 + 麦克风混音
+```
+main.py                 主入口，管线编排
+├── audio_capture.py    WASAPI loopback + 麦克风混音
 ├── vad_processor.py    Silero VAD
 ├── asr_engine.py       faster-whisper 后端
 ├── asr_sensevoice.py   SenseVoice 后端
 ├── asr_funasr_nano.py  FunASR Nano 后端
-├── asr_anime_whisper.py Anime-Whisper 后端（日语动漫/美少女游戏）
-├── translator.py       与 OpenAI API 兼容的客户端（流式、JSON schema、上下文）
-├── model_manager.py    模型下载和缓存
-├── subtitle_overlay.py PyQt6 覆盖层
-├── control_panel.py    设置界面（7个标签页）
-├── dialogs.py          向导、下载和模型配置对话框
+├── asr_anime_whisper.py Anime-Whisper 后端 (日语动画/Galgame)
+├── translator.py       OpenAI 兼容翻译客户端 (流式/JSON/上下文)
+├── model_manager.py    模型下载与缓存管理
+├── subtitle_overlay.py PyQt6 透明悬浮窗
+├── control_panel.py    设置面板 UI (7 个标签页)
+├── dialogs.py          设置向导、下载、模型配置对话框
 └── benchmark.py        翻译基准测试
+```
 
 ## 致谢
 
