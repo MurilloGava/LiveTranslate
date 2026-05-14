@@ -1,5 +1,25 @@
 # LiveTranslate
 
+Main change in user_settings.json: the user can permanently define the position where the subtitle will appear by adjusting the window coordinates directly in the file.
+
+Configuration:
+
+"user_settings.json"
+"window_x": 900,
+"window_y": 930
+
+The project also supports using local LLM providers such as LM Studio and Ollama.
+
+LM Studio: LM Studio 
+http://localhost:1234/v1
+
+Ollama: Ollama
+http://localhost:11434/v1
+
+
+
+
+--------------------------------------------------------------------------------------------------
 **English** | [中文](README_zh.md)
 
 Real-time audio translation for Windows. Captures system audio (WASAPI loopback) and optional microphone input, runs ASR, translates via LLM API, and displays results in a transparent overlay.
