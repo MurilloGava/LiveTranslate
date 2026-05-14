@@ -8,7 +8,7 @@ Configuration:
 "window_x": 900,
 "window_y": 930
 
-The project also supports using local LLM providers such as LM Studio and Ollama.
+The project also supports using both local and online LLM providers, including LM Studio and Ollama.
 
 LM Studio: LM Studio 
 http://localhost:1234/v1
@@ -18,7 +18,9 @@ Ollama: Ollama
 http://localhost:11434
 http://127.0.0.1:11434
 
-Language
+![LiveTranslate](screenshot/edit-model.png)
+
+Language:
 en - English
 ja - Japanese
 zh - Chinese
