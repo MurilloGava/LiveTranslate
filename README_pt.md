@@ -59,15 +59,6 @@ FUNCIONALIDADES
 - Benchmark integrado
 
 --------------------------------------------------------------------------------
-CONFIGURAÇÃO DA POSIÇÃO DA JANELA DE LEGENDAS
---------------------------------------------------------------------------------
-
-A Janela de Legendas agora pode ser totalmente arrastada pelo usuário utilizando o mouse (maior flexibilidade da interface e controle de posicionamento).
-
-Exemplo:
-![LiveTranslate](screenshot/subtitle_window.png)
-
---------------------------------------------------------------------------------
 PROVEDORES LLM SUPORTADOS
 --------------------------------------------------------------------------------
 
@@ -241,6 +232,15 @@ MODELOS RECOMENDADOS PARA TRADUÇÃO DE LIVE
 --------------------------------------------------------------------------------
 ![LiveTranslate](screenshot/translate.png)
 
+
+--------------------------------------------------------------------------------
+CONFIGURAÇÃO DA POSIÇÃO DA JANELA DE LEGENDAS
+--------------------------------------------------------------------------------
+
+A Janela de Legendas agora pode ser totalmente arrastada pelo usuário utilizando o mouse (maior flexibilidade da interface e controle de posicionamento).
+
+Exemplo:
+![LiveTranslate](screenshot/subtitle_window.png)
 --------------------------------------------------------------------------------
 ![LiveTranslate](screenshot/translate2.png)
 --------------------------------------------------------------------------------
