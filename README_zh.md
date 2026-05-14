@@ -1,146 +1,300 @@
-# LiveTranslate
 
-[English](README.md) | **中文**
+--------------------------------------------------------------------------------
+                              LIVETRANSLATE
+                               实时翻译
+--------------------------------------------------------------------------------
 
-Windows 实时音频翻译工具。捕获系统音频（WASAPI loopback）和可选的麦克风输入，语音识别后调用 LLM API 翻译，结果显示在透明悬浮字幕窗口上。
+[English](README.md) | [中文](README_zh.md) | [Português](README_pt.md)
 
-适用于看外语视频、直播、语音对话等场景——无需修改播放器，全局音频捕获即开即用。
+LiveTranslate - Windows 实时音频翻译工具。
+
+捕获系统音频（WASAPI 回环）和可选的麦克风输入，运行 ASR（语音识别），
+通过 AI API 进行翻译，并在透明覆盖层中显示结果。
+
+适用于任何系统音频：视频、直播、语音聊天。
+无需修改播放器。
 
 ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Windows](https://img.shields.io/badge/Platform-Windows-0078d4)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 截图
-
-![LiveTranslate](screenshot/zh.png)
-
-## 安装视频
-
 [![安装演示](https://img.shields.io/badge/Bilibili-安装演示-00A1D6?logo=bilibili)](https://www.bilibili.com/video/BV1K2Awz6Euw) 适用于看外语视频、直播、ASMR等场景，也可以语音输入实时并行翻译多种语音
+--------------------------------------------------------------------------------
+系统要求
+--------------------------------------------------------------------------------
 
-## 功能特性
+- 操作系统：Windows 10 或 11
+- Python：3.10 或更高版本
+  
+- GPU（推荐）：NVIDIA 显卡 + CUDA 12.4（RTX 30xx 需要 CUDA 12.4）
 
-- **实时翻译管线**：系统音频 → VAD → ASR → LLM 翻译 → 字幕显示
-- **多 ASR 引擎**：faster-whisper、SenseVoice、FunASR Nano、Anime-Whisper
-- **兼容任意 OpenAI 格式 API**：DeepSeek、Grok、Qwen、GPT、Ollama、vLLM 等
-- **流式翻译显示**：翻译结果逐字实时显示
-- **模型独立配置**：流式传输、结构化输出(JSON)、上下文历史、禁用思考
-- **麦克风混音**：可选将麦克风输入混合到系统音频一起识别
-- **低延迟 VAD**：32ms 音频块 + Silero VAD，自适应静音检测
-- **透明悬浮窗**：始终置顶、鼠标穿透、可拖拽，14 种配色主题
-- **CUDA 加速**：ASR 模型 GPU 推理
-- **模型自动管理**：首次启动向导，支持 ModelScope / HuggingFace 双源
-- **内置基准测试**：对比翻译模型速度和质量
+- 网络：可选，用于使用翻译 API
+- LLM（可选）：Ollama、LM Studio 或与 OpenAI API 兼容的在线服务商
 
-## 更新日志
+--------------------------------------------------------------------------------
+依赖项下载：
+--------------------------------------------------------------------------------
 
-查看 [中文更新日志](i18n/CHANGELOG_zh.md) | [English Changelog](i18n/CHANGELOG_en.md)
+- 下载：CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
+- 下载：cuDNN (NVIDIA) – AI 的 GPU 加速库（用于 CUDA）
+- *如果需要，请将这些文件夹放置到目录中。* *C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4*
+https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
 
-## 系统要求
+*如果你使用本地 AI，请选择 LM Studio 或 Ollama。*
+- LM Studio: https://lmstudio.ai/download
+- Ollama: https://ollama.com/download/windows
 
-- **操作系统**：Windows 10/11
-- **Python**：3.10+
-- **GPU**（推荐）：NVIDIA 显卡 + CUDA 12.6（RTX 50 系列等 Blackwell 架构需要 CUDA 12.8）
-- **网络**：需要访问翻译 API
+--------------------------------------------------------------------------------
+功能特性
+--------------------------------------------------------------------------------
 
-## 快速开始
+- 实时流水线：系统音频 -> VAD -> ASR -> 翻译 -> 覆盖层显示
+- 多种 ASR 引擎：faster-whisper、SenseVoice、FunASR Nano、Anime-Whisper
+- 任何与 OpenAI API 兼容的服务商：DeepSeek、Grok、Qwen、GPT、Ollama、vLLM
+- 流式翻译显示（逐字显示）
+- 每个模型的单独设置（流式、JSON、上下文历史）
+- 麦克风与系统音频混音
+- 低延迟 VAD（32ms + 自适应静音检测）
+- 透明覆盖层（始终置顶、点击穿透、可拖拽）
+- 14 种颜色主题
+- ASR 的 CUDA 加速
+- 自动模型管理（ModelScope / HuggingFace）
+- 内置基准测试
 
-```bash
-git clone https://github.com/TheDeathDragon/LiveTranslate.git
-cd LiveTranslate
-```
+--------------------------------------------------------------------------------
+字幕窗口位置配置
+--------------------------------------------------------------------------------
 
-双击 **`install.bat`** 一键安装——脚本会自动：
-1. 检测 Python 3.10+（未安装则通过 winget 自动安装）
-2. 创建虚拟环境
-3. 检测 NVIDIA 显卡，选择 CUDA / CPU 版 PyTorch
-4. 安装全部依赖
+在 user_settings.json 文件中，你可以永久设置字幕位置：
 
-安装完成后双击 **`start.bat`** 启动。
+{
+  "subtitle_mode": {
+    "window_x": 900,
+    "window_y": 930
+  }
+}
 
-更新时双击 **`update.bat`**——自动拉取最新代码并更新依赖（未安装 Git 会通过 winget 自动安装）。
+重要提示：Y 坐标（window_y）不会自动更改。
+你只需设置一次，即使文本大小发生变化，它也会保持固定。
 
-<details>
-<summary>手动安装</summary>
+--------------------------------------------------------------------------------
+支持的 LLM 服务商
+--------------------------------------------------------------------------------
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
+LM Studio:
+  http://localhost:1234/v1
+  http://127.0.0.1:1234/v1
+  "api_key": "lm-studio"
 
-# PyTorch（三选一）
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu126  # CUDA
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128  # CUDA（RTX 50 系列）
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu    # 仅 CPU
+Ollama:
+  http://localhost:11434
+  http://127.0.0.1:11434
+  "api_key": "ollama"
 
-# 依赖
-pip install -r requirements.txt
-pip install funasr --no-deps
+OpenAI（官方）:
+  https://api.openai.com/v1
+  （需要 API Key）
 
-# 启动
-.venv\Scripts\python.exe main.py
-```
+OpenRouter:
+  https://openrouter.ai/api/v1
+  （需要 API Key）
 
-> FunASR 使用 `--no-deps` 安装，因为 `editdistance` 需要 C++ 编译器。`requirements.txt` 中已包含纯 Python 替代品 `editdistance-s`。
+Groq:
+  https://api.groq.com/openai/v1
+  （需要 API Key）
 
-</details>
+Together AI:
+  https://api.together.xyz/v1
+  （需要 API Key）
 
-## 首次使用
+Fireworks AI:
+  https://api.fireworks.ai/inference/v1
+  （需要 API Key）
 
-1. 弹出设置向导——选择下载源（ModelScope 适合国内，HuggingFace 适合海外）和缓存路径
-2. 自动下载 Silero VAD + SenseVoice 模型（约 1GB）
-3. 下载完成后进入主界面
+--------------------------------------------------------------------------------
+翻译器支持的语言（44 种语言）
+--------------------------------------------------------------------------------
 
-## 配置翻译 API
+代码 | 语言
+-----|----------------
+en   | 英语
+ja   | 日语
+zh   | 中文
+ko   | 韩语
+pt   | 葡萄牙语
+es   | 西班牙语
+fr   | 法语
+de   | 德语
+it   | 意大利语
+nl   | 荷兰语
+ru   | 俄语
+pl   | 波兰语
+tr   | 土耳其语
+ar   | 阿拉伯语
+th   | 泰语
+vi   | 越南语
+id   | 印尼语
+ms   | 马来语
+hi   | 印地语
+uk   | 乌克兰语
+cs   | 捷克语
+ro   | 罗马尼亚语
+el   | 希腊语
+hu   | 匈牙利语
+sv   | 瑞典语
+da   | 丹麦语
+fi   | 芬兰语
+no   | 挪威语
+he   | 希伯来语
+
+--------------------------------------------------------------------------------
+快速开始
+--------------------------------------------------------------------------------
+
+1. 克隆仓库：
+   git clone https://github.com/MurilloGava/LiveTranslate.git
+   cd LiveTranslate
+
+2. 运行 install.bat（会自动检测 Python、创建虚拟环境、安装依赖）
+
+3. 运行 start.bat 启动程序
+
+如需更新：运行 update.bat
+
+或者
+
+--------------------------------------------------------------------------------
+手动安装
+--------------------------------------------------------------------------------
+
+   python -m venv .venv
+   .venv\Scripts\activate
+
+   # PyTorch（选择一个）
+   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu126  # CUDA
+   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128  # CUDA（RTX 50xx）
+   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu    # 仅 CPU
+
+   # 依赖项
+   pip install -r requirements.txt
+   pip install funasr --no-deps
+
+   # 启动
+   .venv\Scripts\python.exe main.py
+
+> FunASR 使用 --no-deps 是因为 editdistance 需要 C++ 编译器。requirements.txt 中的 editdistance-s 是一个纯 Python 的替代品。
+
+--------------------------------------------------------------------------------
+首次启动
+--------------------------------------------------------------------------------
+
+1. 出现设置向导
+2. 选择下载源（ModelScope 或 HuggingFace）
+3. 自动下载 Silero VAD + SenseVoice 模型（约 1GB）
+4. 准备就绪后出现主界面
+
+--------------------------------------------------------------------------------
+翻译 API 设置
+--------------------------------------------------------------------------------
+
+## 翻译 API
 
 设置 → 翻译标签页：
 
-| 参数 | 示例 |
-|------|------|
-| API Base | `https://api.deepseek.com/v1` |
-| API Key | 你的密钥 |
-| Model | `deepseek-chat` |
-| 代理 | `none` / `system` / 自定义地址 |
+本地 1 - Ollama：
+| 参数       | 示例                        |
+|------------|-----------------------------|
+| API 地址   | http://127.0.0.1:11434      |
+| API 密钥   | ollama                      |
+| 模型       | qwen2.5:0.5b                |
+| 代理       | none / system / 自定义 URL  |
+
+本地 2 - LM Studio：
+| 参数       | 示例                        |
+|------------|-----------------------------|
+| API 地址   | http://127.0.0.1:1234/v1    |
+| API 密钥   | lm-studio                   |
+| 模型       | qwen2.5:0.5b                |
+| 代理       | none / system / 自定义 URL  |
+
+在线服务：
+| 参数       | 示例                        |
+|------------|-----------------------------|
+| API 地址   | https://api.deepseek.com/v1 |
+| API 密钥   | 你的密钥                    |
+| 模型       | deepseek-chat               |
+| 代理       | none / system / 自定义 URL  |
+
+*LM Studio 示例*
+
+![LiveTranslate](screenshot/edit-model.png)
+
+--------------------------------------------------------------------------------
+推荐用于实时翻译的模型
+--------------------------------------------------------------------------------
+
+1. Qwen2.5-0.5B-Instruct（最佳选择）
+   - 速度快，延迟低
+   - 翻译质量优秀
+   - 支持 29+ 种语言
+
+2. Llama-3.2-1B-Instruct
+   - 更大（10亿参数），质量不错
+   - 可能速度较慢
+
+--------------------------------------------------------------------------------
+截图
+--------------------------------------------------------------------------------
+
+![LiveTranslate](screenshot/translate.png)
+
+![LiveTranslate](screenshot/translate2.png)
+
+--------------------------------------------------------------------------------
+视频
+--------------------------------------------------------------------------------
+
+[安装与演示](https://www.bilibili.com/video/BV1K2Awz6Euw)
+
+--------------------------------------------------------------------------------
+项目架构
+--------------------------------------------------------------------------------
 
 ## 架构
 
-```
-Audio (WASAPI 32ms) → VAD (Silero) → ASR → LLM Translation → Overlay
-         ↑ 可选麦克风混音
-```
+音频 (WASAPI 32ms) → VAD (Silero) → ASR → LLM 翻译 → 覆盖层
+         ↑ 可选的麦克风混音
 
-```
-main.py                 主入口，管线编排
-├── audio_capture.py    WASAPI loopback + 麦克风混音
+main.py                 入口点和主流水线
+├── audio_capture.py    WASAPI 回环 + 麦克风混音
 ├── vad_processor.py    Silero VAD
 ├── asr_engine.py       faster-whisper 后端
 ├── asr_sensevoice.py   SenseVoice 后端
 ├── asr_funasr_nano.py  FunASR Nano 后端
-├── asr_anime_whisper.py Anime-Whisper 后端 (日语动画/Galgame)
-├── translator.py       OpenAI 兼容翻译客户端 (流式/JSON/上下文)
-├── model_manager.py    模型下载与缓存管理
-├── subtitle_overlay.py PyQt6 透明悬浮窗
-├── control_panel.py    设置面板 UI (7 个标签页)
-├── dialogs.py          设置向导、下载、模型配置对话框
+├── asr_anime_whisper.py Anime-Whisper 后端（日语动漫/美少女游戏）
+├── translator.py       与 OpenAI API 兼容的客户端（流式、JSON schema、上下文）
+├── model_manager.py    模型下载和缓存
+├── subtitle_overlay.py PyQt6 覆盖层
+├── control_panel.py    设置界面（7个标签页）
+├── dialogs.py          向导、下载和模型配置对话框
 └── benchmark.py        翻译基准测试
-```
 
 ## 致谢
 
-- [faster-whisper](https://github.com/SYSTRAN/faster-whisper) — 基于 CTranslate2 的 Whisper 推理
-- [FunASR](https://github.com/modelscope/FunASR) — SenseVoice / Fun-ASR-Nano
-- [Anime-Whisper](https://huggingface.co/litagin/anime-whisper) — 日语动画/Galgame 专用 ASR
-- [Silero VAD](https://github.com/snakers4/silero-vad) — 语音活动检测
+- faster-whisper - 通过 CTranslate2 进行 Whisper 推理
+- FunASR - SenseVoice / Fun-ASR-Nano
+- Anime-Whisper - 日语动漫/美少女游戏 ASR
+- Silero VAD - 语音活动检测
 
-## Star History
+--------------------------------------------------------------------------------
+更新日志
+--------------------------------------------------------------------------------
 
-<a href="https://www.star-history.com/?repos=TheDeathDragon%2FLiveTranslate&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&legend=top-left" />
- </picture>
-</a>
+- 本地 AI 模式
+- 用户可以在 user_settings.json 文件中完全控制字幕栏的位置
 
 ## 许可证
+
+MIT 许可证
 
 [MIT License](LICENSE)
