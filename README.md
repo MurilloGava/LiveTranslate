@@ -66,14 +66,15 @@ SUBTITLE WINDOW POSITION CONFIGURATION
 --------------------------------------------------------------------------------
 
 In the user_settings.json file, you permanently set the subtitle position:
-
+Example:
+```
 {
   "subtitle_mode": {
     "window_x": 900,
     "window_y": 930
   }
 }
-
+```
 IMPORTANT: The Y position (window_y) is NOT changed automatically.
 You set it once and it stays fixed, even when the text changes size.
 
