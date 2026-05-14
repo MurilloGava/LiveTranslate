@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
-                              LIVETRANSLATE
-                         Real-Time Translation
+                                  LIVETRANSLATE
+                              Real-Time Translation
+                         Ollama - LM Studio - Online API
 --------------------------------------------------------------------------------
 
 [English](README.md) | [中文](README_zh.md) | [Português](README_pt.md)
