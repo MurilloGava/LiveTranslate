@@ -62,19 +62,10 @@ FUNCIONALIDADES
 CONFIGURAÇÃO DA POSIÇÃO DA JANELA DE LEGENDAS
 --------------------------------------------------------------------------------
 
-No arquivo user_settings.json, você define permanentemente a posição da legenda:
+A Janela de Legendas agora pode ser totalmente arrastada pelo usuário utilizando o mouse (maior flexibilidade da interface e controle de posicionamento).
 
 Exemplo:
-```
-{
-  "subtitle_mode": {
-    "window_x": 900,
-    "window_y": 930
-  }
-}
-```
-IMPORTANTE: A posição Y (window_y) NÃO é alterada automaticamente.
-Você define uma vez e ela permanece fixa, mesmo quando o texto muda de tamanho.
+![LiveTranslate](screenshot/subtitle_window.png)
 
 --------------------------------------------------------------------------------
 PROVEDORES LLM SUPORTADOS
