@@ -252,9 +252,12 @@ RECOMMENDED MODELS FOR LIVE TRANSLATION
 --------------------------------------------------------------------------------
 
 ## Screenshot
+- 1
 ![LiveTranslate](screenshot/translate.png)
-![LiveTranslate](screenshot/translate2.png)
 
+- 2
+![LiveTranslate](screenshot/translate2.png)
+--------------------------------------------------------------------------------
 ## Video
 
 [![Install & Demo](https://img.shields.io/badge/Bilibili-Install%20%26%20Demo-00A1D6?logo=bilibili)](https://www.bilibili.com/video/BV1K2Awz6Euw)
