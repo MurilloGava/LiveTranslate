@@ -162,9 +162,6 @@ Para atualizar: execute update.bat
 INSTALAÇÃO MANUAL
 --------------------------------------------------------------------------------
 
-<details>
-<summary>Manual install</summary>
-
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
@@ -184,7 +181,7 @@ pip install funasr --no-deps
 
 > FunASR uses `--no-deps` because `editdistance` requires a C++ compiler. `editdistance-s` in `requirements.txt` is a pure-Python drop-in replacement.
 
-</details>
+
 
 --------------------------------------------------------------------------------
 PRIMEIRA INICIALIZAÇÃO
