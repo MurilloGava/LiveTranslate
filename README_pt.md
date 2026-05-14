@@ -81,10 +81,12 @@ PROVEDORES LLM SUPORTADOS
 LM Studio:
   http://localhost:1234/v1
   http://127.0.0.1:1234/v1
+  "api_key": lm-studio
 
 Ollama:
   http://localhost:11434
   http://127.0.0.1:11434
+  "api_key": ollama
 
 OpenAI (official):
   https://api.openai.com/v1
@@ -204,7 +206,7 @@ Local
 | Parameter | Example |
 |-----------|---------|
 | API Base | `http://127.0.0.1:11434` |
-| API Key | (NOT NEEDED) |
+| API Key | ollama |
 | Model | `qwen2.5:0.5b` |
 | Proxy | `none` / `system` / custom URL |
 
@@ -223,13 +225,13 @@ Abra Configurações -> Guia Tradução: (Settings → Translation tab:)
 
 1° opção Local Ollama:
 - API Base: http://127.0.0.1:11434
-- API Key: (NÃO PRECISA)
+- API Key: ollama
 - Model: qwen2.5:0.5b (exemplo)
 - Proxy: none / system / URL personalizada
 
 2° opção Local LM Studio:
 - API Base: http://127.0.0.1:1234/v1
-- API Key: (NÃO PRECISA)
+- API Key: lm-studio
 - Model: qwen2.5:0.5b (exemplo)
 - Proxy: none / system / URL personalizada
 
