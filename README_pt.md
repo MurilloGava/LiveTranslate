@@ -2,6 +2,7 @@
                               LIVETRANSLATE
                           Tradução em Tempo Real
 --------------------------------------------------------------------------------
+[English](README.md) | [中文](README_zh.md) | [Português](README_pt.md)
 
 LiveTranslate - Tradução de áudio em tempo real para Windows.
 
@@ -182,6 +183,8 @@ Abra Configurações -> Guia Tradução:
 - Model: deepseek-chat (exemplo)
 - Proxy: none / system / URL personalizada
 
+![LiveTranslate](screenshot/edit-model.png)
+
 --------------------------------------------------------------------------------
 MODELOS RECOMENDADOS PARA TRADUÇÃO DE LIVE
 --------------------------------------------------------------------------------
@@ -201,6 +204,7 @@ ARQUITETURA DO PROJETO
 Audio (WASAPI 32ms) → VAD (Silero) → ASR → LLM Translation → Overlay
          ↑ optional mic mix-in
 --------------------------------------------------------------------------------
+
 main.py                 Entry point & pipeline
 ├── audio_capture.py    WASAPI loopback + mic mix-in
 ├── vad_processor.py    Silero VAD
