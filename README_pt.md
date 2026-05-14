@@ -201,10 +201,14 @@ MODELOS RECOMENDADOS PARA TRADUÇÃO DE LIVE
 --------------------------------------------------------------------------------
 ARQUITETURA DO PROJETO
 --------------------------------------------------------------------------------
+
+
+```
 Audio (WASAPI 32ms) → VAD (Silero) → ASR → LLM Translation → Overlay
          ↑ optional mic mix-in
---------------------------------------------------------------------------------
+```
 
+```
 main.py                 Entry point & pipeline
 ├── audio_capture.py    WASAPI loopback + mic mix-in
 ├── vad_processor.py    Silero VAD
@@ -218,7 +222,7 @@ main.py                 Entry point & pipeline
 ├── control_panel.py    Settings UI (7 tabs)
 ├── dialogs.py          Wizard, download & model config dialogs
 └── benchmark.py        Translation benchmark
-
+```
 --------------------------------------------------------------------------------
 AGRADECIMENTOS
 --------------------------------------------------------------------------------
