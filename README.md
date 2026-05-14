@@ -165,26 +165,9 @@ To update: run update.bat
 
 or
 
-## Quick Start
-
-```bash
-git clone https://github.com/MurilloGava/LiveTranslate.git
-cd LiveTranslate
-```
-
-Double-click **`install.bat`** — the installer will:
-1. Detect Python 3.10+ (auto-install via winget if missing)
-2. Create a virtual environment
-3. Auto-detect NVIDIA GPU and let you choose CUDA / CPU PyTorch
-4. Install all dependencies
-
-Then double-click **`start.bat`** to launch.
-
-To update, double-click **`update.bat`** — it will pull the latest code and update dependencies (auto-installs Git via winget if missing).
-
-<details>
-<summary>Manual install</summary>
-
+--------------------------------------------------------------------------------
+Manual install
+--------------------------------------------------------------------------------
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
@@ -204,7 +187,7 @@ pip install funasr --no-deps
 
 > FunASR uses `--no-deps` because `editdistance` requires a C++ compiler. `editdistance-s` in `requirements.txt` is a pure-Python drop-in replacement.
 
-</details>
+
 
 --------------------------------------------------------------------------------
 FIRST LAUNCH
@@ -270,8 +253,8 @@ PROJECT ARCHITECTURE
 --------------------------------------------------------------------------------
 
 ## Screenshot
-
-![LiveTranslate](screenshot/en.png)
+![LiveTranslate](screenshot/translate.png)
+![LiveTranslate](screenshot/translate2.png)
 
 ## Video
 
