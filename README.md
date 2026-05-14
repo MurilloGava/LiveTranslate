@@ -315,8 +315,19 @@ pip install funasr --no-deps
 
 ## Translation API
 
+
 Settings → Translation tab:
 
+Local
+| Parameter | Example |
+|-----------|---------|
+| API Base | `http://127.0.0.1:11434` |
+| API Key | (NOT NEEDED) |
+| Model | `qwen2.5:0.5b` |
+| Proxy | `none` / `system` / custom URL |
+
+
+Online
 | Parameter | Example |
 |-----------|---------|
 | API Base | `https://api.deepseek.com/v1` |
