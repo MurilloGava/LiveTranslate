@@ -18,8 +18,11 @@ REQUISITOS
 
 - Sistema: Windows 10 ou 11
 - Python: 3.10 ou superior
-- GPU (recomendado): NVIDIA com CUDA 12.6 (RTX 30xx requer CUDA 12.8)
-- Rede: Acesso a uma API de tradução (não necessário)
+- GPU (recomendado): NVIDIA com CUDA 12.6 (RTX 30xx requer CUDA 12.8) 
+https://developer.nvidia.com/cuda-12-4-0-download-archive 
+https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
+- Rede: conexão opcional para uso de APIs de tradução
+- LLM (opcional): Ollama, LM Studio ou provedores online compatíveis com API OpenAI
 
 --------------------------------------------------------------------------------
 FUNCIONALIDADES
