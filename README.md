@@ -262,46 +262,6 @@ PROJECT ARCHITECTURE
 
 
 
-## Quick Start
-
-```bash
-git clone https://github.com/TheDeathDragon/LiveTranslate.git
-cd LiveTranslate
-```
-
-Double-click **`install.bat`** — the installer will:
-1. Detect Python 3.10+ (auto-install via winget if missing)
-2. Create a virtual environment
-3. Auto-detect NVIDIA GPU and let you choose CUDA / CPU PyTorch
-4. Install all dependencies
-
-Then double-click **`start.bat`** to launch.
-
-To update, double-click **`update.bat`** — it will pull the latest code and update dependencies (auto-installs Git via winget if missing).
-
-<details>
-<summary>Manual install</summary>
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-
-# PyTorch (choose one)
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu126  # CUDA
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128  # CUDA (RTX 50xx)
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu    # CPU only
-
-# Dependencies
-pip install -r requirements.txt
-pip install funasr --no-deps
-
-# Launch
-.venv\Scripts\python.exe main.py
-```
-
-> FunASR uses `--no-deps` because `editdistance` requires a C++ compiler. `editdistance-s` in `requirements.txt` is a pure-Python drop-in replacement.
-
-</details>
 
 
 ## Architecture
