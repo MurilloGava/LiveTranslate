@@ -65,17 +65,10 @@ https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/
 字幕窗口位置配置
 --------------------------------------------------------------------------------
 
-在 user_settings.json 文件中，你可以永久设置字幕位置：
+字幕窗口现在可通过鼠标拖动完全自由移动（提升了UI灵活性和位置控制能力）
 
-{
-  "subtitle_mode": {
-    "window_x": 900,
-    "window_y": 930
-  }
-}
-
-重要提示：Y 坐标（window_y）不会自动更改。
-你只需设置一次，即使文本大小发生变化，它也会保持固定。
+示例：
+![LiveTranslate](screenshot/subtitle_window.png)
 
 --------------------------------------------------------------------------------
 支持的 LLM 服务商
