@@ -63,17 +63,6 @@ FEATURES
 - Built-in benchmark
 
 --------------------------------------------------------------------------------
-SUBTITLE WINDOW POSITION CONFIGURATION
---------------------------------------------------------------------------------
-
-Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
-
-Example:
-![LiveTranslate](screenshot/subtitle_window.png)
-
-
-
---------------------------------------------------------------------------------
 SUPPORTED LLM PROVIDERS
 --------------------------------------------------------------------------------
 
@@ -252,8 +241,16 @@ RECOMMENDED MODELS FOR LIVE TRANSLATION
 ![LiveTranslate](screenshot/translate.png)
 
 --------------------------------------------------------------------------------
-![LiveTranslate](screenshot/translate2.png)
+SUBTITLE WINDOW POSITION CONFIGURATION
+
+Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
 --------------------------------------------------------------------------------
+Example:
+![LiveTranslate](screenshot/subtitle_window.png)
+--------------------------------------------------------------------------------
+![LiveTranslate](screenshot/translate2.png)
+
+
 --------------------------------------------------------------------------------
 ## Video
 
