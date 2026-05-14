@@ -231,7 +231,7 @@ Online
 | Proxy | `none` / `system` / custom URL |
 
 
-
+*Example LM Studio*
 
 ![LiveTranslate](screenshot/edit-model.png)
 
