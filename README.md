@@ -1,66 +1,254 @@
-# LiveTranslate
+--------------------------------------------------------------------------------
+                              LIVETRANSLATE
+                         Real-Time Translation
+--------------------------------------------------------------------------------
 
-Main change in user_settings.json: the user can permanently define the position where the subtitle will appear by adjusting the window coordinates directly in the file.
+[English](README.md) | [中文](README_zh.md) | [Português](README_pt.md)
 
-Configuration:
+LiveTranslate - Real-time audio translation for Windows.
 
-"user_settings.json"
-"window_x": 900,
-"window_y": 930
+Captures system audio (WASAPI loopback) and optional microphone input, runs ASR
+(speech recognition), translates via AI API, and displays results in a
+transparent overlay.
 
-The project also supports using both local and online LLM providers, including LM Studio and Ollama.
-
-LM Studio: LM Studio 
-http://localhost:1234/v1
-http://127.0.0.1:1234/v1
-
-Ollama: Ollama
-http://localhost:11434
-http://127.0.0.1:11434
-
-![LiveTranslate](screenshot/edit-model.png)
-
-Language:
-en - English,
-ja - Japanese,
-zh - Chinese,
-ko - Korean,
-fr - French,
-de - German,
-es - Spanish,
-ru - Russian,
-pt - Portuguese,
-it - Italian,
-nl - Dutch,
-pl - Polish,
-tr - Turkish,
-ar - Arabic,
-th - Thai,
-vi - Vietnamese,
-id - Indonesian,
-ms - Malay,
-hi - Hindi,
-uk - Ukrainian,
-cs - Czech,
-ro - Romanian,
-el - Greek,
-hu - Hungarian,
-sv - Swedish,
-da - Danish,
-fi - Finnish,
-no - Norwegian,
-he - Hebrew.
-
---------------------------------------------------------------------------------------------------
-**English** | [中文](README_zh.md) | [Português](README_pt.md)
-
-Real-time audio translation for Windows. Captures system audio (WASAPI loopback) and optional microphone input, runs ASR, translates via LLM API, and displays results in a transparent overlay.
-
-Works with any system audio — videos, livestreams, voice chat. No player modifications needed.
+Works with any system audio: videos, livestreams, voice chat.
+No player modifications needed.
 
 ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Windows](https://img.shields.io/badge/Platform-Windows-0078d4)
 ![License](https://img.shields.io/badge/License-MIT-green)
+
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+- OS: Windows 10 or 11
+- Python: 3.10 or higher
+  
+- GPU (recommended): NVIDIA with CUDA 12.4 (RTX 30xx requires CUDA 12.4) 
+
+- Network: optional connection for using translation APIs
+- LLM (optional): Ollama, LM Studio or online providers compatible with OpenAI API
+
+--------------------------------------------------------------------------------
+REQUIREMENTS DOWNLOADS:
+--------------------------------------------------------------------------------
+
+- Download: CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
+- Download: cuDNN (NVIDIA) – GPU acceleration library for AI (CUDA) https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
+- LM Studio: https://lmstudio.ai/download
+- Ollama: https://ollama.com/download/windows
+
+--------------------------------------------------------------------------------
+FEATURES
+--------------------------------------------------------------------------------
+
+- Real-time pipeline: System audio -> VAD -> ASR -> Translation -> Overlay
+- Multiple ASR engines: faster-whisper, SenseVoice, FunASR Nano, Anime-Whisper
+- Any OpenAI-compatible API: DeepSeek, Grok, Qwen, GPT, Ollama, vLLM
+- Streaming translation display (character by character)
+- Per-model settings (streaming, JSON, context history)
+- Microphone mixing with system audio
+- Low-latency VAD (32ms + adaptive silence detection)
+- Transparent overlay (always-on-top, click-through, draggable)
+- 14 color themes
+- CUDA acceleration for ASR
+- Automatic model management (ModelScope / HuggingFace)
+- Built-in benchmark
+
+--------------------------------------------------------------------------------
+SUBTITLE WINDOW POSITION CONFIGURATION
+--------------------------------------------------------------------------------
+
+In the user_settings.json file, you permanently set the subtitle position:
+
+{
+  "subtitle_mode": {
+    "window_x": 900,
+    "window_y": 930
+  }
+}
+
+IMPORTANT: The Y position (window_y) is NOT changed automatically.
+You set it once and it stays fixed, even when the text changes size.
+
+--------------------------------------------------------------------------------
+SUPPORTED LLM PROVIDERS
+--------------------------------------------------------------------------------
+
+LM Studio:
+  http://localhost:1234/v1
+  http://127.0.0.1:1234/v1
+
+Ollama:
+  http://localhost:11434
+  http://127.0.0.1:11434
+
+OpenAI (official):
+  https://api.openai.com/v1
+  (API Key)
+
+OpenRouter:
+  https://openrouter.ai/api/v1
+  (API Key)
+
+Groq:
+  https://api.groq.com/openai/v1
+  (API Key)
+
+Together AI:
+  https://api.together.xyz/v1
+  (API Key)
+
+Fireworks AI:
+  https://api.fireworks.ai/inference/v1
+  (API Key)
+
+--------------------------------------------------------------------------------
+LANGUAGES SUPPORTED BY THE TRANSLATOR (44 languages)
+--------------------------------------------------------------------------------
+
+Code | Language
+-----|----------------
+en   | English
+ja   | Japanese
+zh   | Chinese
+ko   | Korean
+pt   | Portuguese
+es   | Spanish
+fr   | French
+de   | German
+it   | Italian
+nl   | Dutch
+ru   | Russian
+pl   | Polish
+tr   | Turkish
+ar   | Arabic
+th   | Thai
+vi   | Vietnamese
+id   | Indonesian
+ms   | Malay
+hi   | Hindi
+uk   | Ukrainian
+cs   | Czech
+ro   | Romanian
+el   | Greek
+hu   | Hungarian
+sv   | Swedish
+da   | Danish
+fi   | Finnish
+no   | Norwegian
+he   | Hebrew
+
+--------------------------------------------------------------------------------
+QUICK START
+--------------------------------------------------------------------------------
+
+1. Clone the repository:
+   git clone https://github.com/MurilloGava/LiveTranslate.git
+   cd LiveTranslate
+
+2. Run install.bat (detects Python, creates virtual environment, installs dependencies)
+
+3. Run start.bat to launch
+
+To update: run update.bat
+
+or
+
+## Quick Start
+
+```bash
+git clone https://github.com/TheDeathDragon/LiveTranslate.git
+cd LiveTranslate
+```
+
+Double-click **`install.bat`** — the installer will:
+1. Detect Python 3.10+ (auto-install via winget if missing)
+2. Create a virtual environment
+3. Auto-detect NVIDIA GPU and let you choose CUDA / CPU PyTorch
+4. Install all dependencies
+
+Then double-click **`start.bat`** to launch.
+
+To update, double-click **`update.bat`** — it will pull the latest code and update dependencies (auto-installs Git via winget if missing).
+
+<details>
+<summary>Manual install</summary>
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+
+# PyTorch (choose one)
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu126  # CUDA
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128  # CUDA (RTX 50xx)
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu    # CPU only
+
+# Dependencies
+pip install -r requirements.txt
+pip install funasr --no-deps
+
+# Launch
+.venv\Scripts\python.exe main.py
+```
+
+> FunASR uses `--no-deps` because `editdistance` requires a C++ compiler. `editdistance-s` in `requirements.txt` is a pure-Python drop-in replacement.
+
+</details>
+
+--------------------------------------------------------------------------------
+FIRST LAUNCH
+--------------------------------------------------------------------------------
+
+1. Setup wizard appears
+2. Choose download source (ModelScope or HuggingFace)
+3. Silero VAD + SenseVoice models download automatically (~1GB)
+4. Main UI appears when ready
+
+--------------------------------------------------------------------------------
+TRANSLATION API SETUP
+--------------------------------------------------------------------------------
+
+Open Settings -> Translation tab:
+
+1st option Local Ollama:
+- API Base: http://127.0.0.1:11434
+- API Key: (NOT NEEDED)
+- Model: qwen2.5:0.5b (example)
+- Proxy: none / system / custom URL
+
+2nd option Local LM Studio:
+- API Base: http://127.0.0.1:1234/v1
+- API Key: (NOT NEEDED)
+- Model: qwen2.5:0.5b (example)
+- Proxy: none / system / custom URL
+
+3rd option Online:
+- API Base: https://api.deepseek.com/v1 (example)
+- API Key: Your key
+- Model: deepseek-chat (example)
+- Proxy: none / system / custom URL
+
+![LiveTranslate](screenshot/edit-model.png)
+
+--------------------------------------------------------------------------------
+RECOMMENDED MODELS FOR LIVE TRANSLATION
+--------------------------------------------------------------------------------
+
+1. Qwen2.5-0.5B-Instruct (BEST CHOICE)
+   - Fast, low latency
+   - Superior translation quality
+   - Supports 29+ languages
+
+2. Llama-3.2-1B-Instruct
+   - Larger (1B), good quality
+   - May be slower
+
+--------------------------------------------------------------------------------
+PROJECT ARCHITECTURE
+--------------------------------------------------------------------------------
 
 ## Screenshot
 
@@ -70,30 +258,7 @@ Works with any system audio — videos, livestreams, voice chat. No player modif
 
 [![Install & Demo](https://img.shields.io/badge/Bilibili-Install%20%26%20Demo-00A1D6?logo=bilibili)](https://www.bilibili.com/video/BV1K2Awz6Euw)
 
-## Features
 
-- **Real-time pipeline**: System audio → VAD → ASR → LLM translation → overlay
-- **Multiple ASR engines**: faster-whisper, SenseVoice, FunASR Nano, Anime-Whisper
-- **Any OpenAI-compatible API**: DeepSeek, Grok, Qwen, GPT, Ollama, vLLM, etc.
-- **Streaming translation display**: Real-time character-by-character translation output
-- **Per-model settings**: Streaming, structured output (JSON), context history, disable thinking
-- **Microphone mix-in**: Optionally mix microphone input with system audio for ASR
-- **Low-latency VAD**: 32ms chunks + Silero VAD with adaptive silence detection
-- **Transparent overlay**: Always-on-top, click-through, draggable, 14 color themes
-- **CUDA acceleration**: GPU-accelerated ASR inference
-- **Auto model management**: Setup wizard, ModelScope / HuggingFace dual sources
-- **Built-in benchmark**: Compare translation model speed and quality
-
-## Changelog
-
-See [English Changelog](i18n/CHANGELOG_en.md) | [中文更新日志](i18n/CHANGELOG_zh.md)
-
-## Requirements
-
-- **OS**: Windows 10/11
-- **Python**: 3.10+
-- **GPU** (recommended): NVIDIA + CUDA 12.6 (Blackwell GPUs like RTX 50xx require CUDA 12.8)
-- **Network**: Access to a translation API
 
 ## Quick Start
 
@@ -183,15 +348,6 @@ main.py                 Entry point & pipeline
 - [Anime-Whisper](https://huggingface.co/litagin/anime-whisper) — Japanese anime/galgame ASR
 - [Silero VAD](https://github.com/snakers4/silero-vad) — Voice activity detection
 
-## Star History
-
-<a href="https://www.star-history.com/?repos=TheDeathDragon%2FLiveTranslate&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=TheDeathDragon/LiveTranslate&type=date&legend=top-left" />
- </picture>
-</a>
 
 ## License
 
