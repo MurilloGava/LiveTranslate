@@ -1,9 +1,11 @@
+
 """
 Subtitle window - clean text-only window for OBS capture.
 Uses QPainterPath for outlined text rendering.
 
 Usage:
-  - Middle-click drag to move the window
+  - Left-click drag to move the window
+  - Window grows UPWARD when text increases (bottom edge is fixed)
   - Configure via tray menu → Subtitle Mode → Settings
   - OBS: Window Capture → select "LiveTranslate Subtitle" → check "Allow Transparency"
 """
@@ -483,8 +485,9 @@ class _SubtitleTextWidget(QWidget):
 class SubtitleWindow(QWidget):
     """Clean text-only subtitle window for OBS capture.
 
-    Middle-click anywhere to drag. Window width is fixed (set in settings),
-    height auto-fits to text content.
+    Left-click anywhere to drag.
+    Window grows UPWARD when text increases (bottom edge is fixed).
+    Configure via tray menu → Subtitle Mode → Settings.
     """
 
     update_text_signal = pyqtSignal(str, str)  # original, translations_json
@@ -507,10 +510,27 @@ class SubtitleWindow(QWidget):
         self._pending_segment_timers = []
         # Minimum display time: queue rapid updates instead of replacing instantly
         self._last_insert_time = 0.0
-        self._min_display_ms = 1500  # minimum ms before a sentence can be replaced
+        self._min_display_ms = 1500
         self._height_anim = None
+        # Timer to debounce position saving
+        self._pos_save_timer = QTimer(self)
+        self._pos_save_timer.setSingleShot(True)
+        self._pos_save_timer.setInterval(300)
+        self._pos_save_timer.timeout.connect(lambda: self.position_changed.emit())
 
         self._setup_ui()
+
+        # Restore saved position from settings (top-left corner)
+        saved_x = self._settings.get("window_x")
+        saved_y = self._settings.get("window_y")
+        if saved_x is not None and saved_y is not None:
+            if self._is_pos_visible(saved_x, saved_y):
+                self.move(saved_x, saved_y)
+            else:
+                self.move(100, 100)
+        else:
+            self.move(100, 100)
+
         self.update_text_signal.connect(self._on_update_text)
 
     @staticmethod
@@ -521,17 +541,9 @@ class SubtitleWindow(QWidget):
                 return True
         return False
 
-    def _clamp_to_screen(self):
-        x, y = self.x(), self.y()
-        if self._is_pos_visible(x, y):
-            return  # <-- ADICIONE ISSO: não força mudança se já está visível
-        screen = QApplication.screenAt(QPoint(x, y))
-        if screen is None:
-            screen = QApplication.primaryScreen()
-        geo = screen.availableGeometry()
-        nx = max(geo.left(), min(x, geo.right() - self.width()))
-        ny = max(geo.top(), min(y, geo.bottom() - self.height()))
-        self.move(nx, ny)
+    def _schedule_pos_save(self):
+        """Debounce position saves to avoid flooding during drag."""
+        self._pos_save_timer.start()
 
     def _setup_ui(self):
         self.setWindowFlags(
@@ -542,17 +554,7 @@ class SubtitleWindow(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
 
-        s = self._settings
-        w = s.get("window_width", 1000)
-        saved_x = s.get("window_x")
-        saved_y = s.get("window_y")
-        if saved_x is not None and saved_y is not None:
-            if self._is_pos_visible(saved_x, saved_y):
-                self.move(saved_x, saved_y)
-            else:
-                self.move(100, 100)
-        else:
-            self.move(100, 100)
+        w = self._settings.get("window_width", 1000)
         self.setFixedWidth(w)
 
         self._main_layout = QVBoxLayout(self)
@@ -564,14 +566,14 @@ class SubtitleWindow(QWidget):
         self._content.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self._content_layout = QVBoxLayout(self._content)
         self._content_layout.setContentsMargins(16, 8, 16, 8)
-        self._content_layout.setSpacing(s.get("line_spacing", 8))
+        self._content_layout.setSpacing(self._settings.get("line_spacing", 8))
 
         self._rebuild_text_widgets()
 
         self._main_layout.addWidget(self._content)
 
         self._apply_background()
-        self._fit_height_animated()
+        self._fit_height_snap()
 
     def _rebuild_text_widgets(self):
         for w in self._text_widgets:
@@ -617,27 +619,32 @@ class SubtitleWindow(QWidget):
         return max(total, 20)
 
     def _fit_height_snap(self):
-        new_h = self._calc_target_height()
+        """Resize instantly, keeping bottom edge fixed (window grows UP)."""
         old_h = self.height()
+        new_h = self._calc_target_height()
         if new_h == old_h:
             return
-        if self._height_anim and self._height_anim.state() != QPropertyAnimation.State.Stopped:
-            self._height_anim.stop()
-        self.move(self.x(), self.y() - (new_h - old_h) // 2)
+
+        old_bottom = self.y() + old_h
         self.setFixedHeight(new_h)
-        self._clamp_to_screen()
-        self.position_changed.emit()
+        # Move window UP so bottom edge stays in the same place
+        new_y = old_bottom - new_h
+        self.move(self.x(), new_y)
+        self._schedule_pos_save()
 
     def _fit_height_animated(self):
+        """Animate height change while keeping bottom edge fixed (window grows UP)."""
         new_h = self._calc_target_height()
         old_h = self.height()
         if new_h == old_h:
             return
+
         if self._height_anim and self._height_anim.state() != QPropertyAnimation.State.Stopped:
             self._height_anim.stop()
 
-        # NEVER change Y position - user is the boss
-        target_y = self.y()
+        old_bottom = self.y() + old_h
+        target_y = old_bottom - new_h
+
         self.setMinimumHeight(min(old_h, new_h))
         self.setMaximumHeight(max(old_h, new_h))
 
@@ -649,15 +656,13 @@ class SubtitleWindow(QWidget):
 
         def on_finished():
             self.setFixedHeight(new_h)
-            # NO automatic clamping - user position is sacred
-            # NO position_changed.emit() unless user actually moved it
-            # We only save position when user drags (mouseReleaseEvent)
-            pass
+            self._schedule_pos_save()
+
         anim.finished.connect(on_finished)
 
         self._height_anim = anim
         anim.start()
-        
+
     def apply_settings(self, settings: dict):
         self._settings = _merge_settings(DEFAULT_SUBTITLE_WIN_SETTINGS, settings)
 
@@ -742,25 +747,22 @@ class SubtitleWindow(QWidget):
             tw._entry_animation = old_entry
             tw._animation_duration = old_dur
 
-    # --- Middle-click drag ---
+    # --- Left-click drag to move window ---
     def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.MiddleButton:
-            self._drag_pos = (
-                event.globalPosition().toPoint()
-                - self.frameGeometry().topLeft()
-            )
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
         super().mousePressEvent(event)
 
     def mouseMoveEvent(self, event):
-        if self._drag_pos and event.buttons() & Qt.MouseButton.MiddleButton:
+        if self._drag_pos and event.buttons() & Qt.MouseButton.LeftButton:
             self.move(event.globalPosition().toPoint() - self._drag_pos)
+            self._schedule_pos_save()
         super().mouseMoveEvent(event)
 
     def mouseReleaseEvent(self, event):
-        if event.button() == Qt.MouseButton.MiddleButton:
-            if self._drag_pos:
-                self._drag_pos = None
-                self.position_changed.emit()  # ONLY HERE - when USER moves
+        if event.button() == Qt.MouseButton.LeftButton and self._drag_pos:
+            self._drag_pos = None
+            self._schedule_pos_save()
         super().mouseReleaseEvent(event)
 
     def closeEvent(self, event):
@@ -782,7 +784,6 @@ class SubtitleWindow(QWidget):
                       or a plain string (backward compat, treated as primary target).
         """
         if isinstance(translations, str):
-            # Backward compat: wrap in dict with empty key
             translations = {"": translations}
         self.update_text_signal.emit(original, json.dumps(translations, ensure_ascii=False))
 
@@ -791,7 +792,6 @@ class SubtitleWindow(QWidget):
         translations = json.loads(translations_json)
         self._cancel_pending_segments()
 
-        # Respect minimum display time: delay if previous sentence was inserted recently
         now_ms = time.monotonic() * 1000
         elapsed = now_ms - self._last_insert_time
         base_delay = max(0, int(self._min_display_ms - elapsed)) if self._last_insert_time > 0 else 0
@@ -807,8 +807,6 @@ class SubtitleWindow(QWidget):
             self._pending_segment_timers.append(timer)
 
     def _insert_sentence(self, original: str, translations: dict):
-        """Insert a single sentence and refresh display."""
-
         max_sentences = self._settings.get("sentences", 1)
         self._sentences.append((original, translations))
         if len(self._sentences) > max_sentences:
@@ -822,12 +820,10 @@ class SubtitleWindow(QWidget):
         self._last_insert_time = time.monotonic() * 1000
 
     def _cancel_pending_segments(self):
-        """Cancel any pending delayed segment insertions."""
         for timer in self._pending_segment_timers:
             timer.stop()
             timer.deleteLater()
         self._pending_segment_timers.clear()
-
 
     def _refresh_display(self):
         if not self._sentences:
@@ -867,7 +863,6 @@ class SubtitleWindow(QWidget):
             wi += 1
 
     def get_target_languages(self) -> set:
-        """Return set of unique target language codes from enabled translation lines."""
         langs = set()
         for cfg in self._settings.get("lines", []):
             if cfg.get("enabled", True) and cfg.get("type") == "translation":
