@@ -21,35 +21,35 @@ http://127.0.0.1:11434
 ![LiveTranslate](screenshot/edit-model.png)
 
 Language:
-en - English
-ja - Japanese
-zh - Chinese
-ko - Korean
-fr - French
-de - German
-es - Spanish
-ru - Russian
-pt - Portuguese
-it - Italian
-nl - Dutch
-pl - Polish
-tr - Turkish
-ar - Arabic
-th - Thai
-vi - Vietnamese
-id - Indonesian
-ms - Malay
-hi - Hindi
-uk - Ukrainian
-cs - Czech
-ro - Romanian
-el - Greek
-hu - Hungarian
-sv - Swedish
-da - Danish
-fi - Finnish
-no - Norwegian
-he - Hebrew
+en - English,
+ja - Japanese,
+zh - Chinese,
+ko - Korean,
+fr - French,
+de - German,
+es - Spanish,
+ru - Russian,
+pt - Portuguese,
+it - Italian,
+nl - Dutch,
+pl - Polish,
+tr - Turkish,
+ar - Arabic,
+th - Thai,
+vi - Vietnamese,
+id - Indonesian,
+ms - Malay,
+hi - Hindi,
+uk - Ukrainian,
+cs - Czech,
+ro - Romanian,
+el - Greek,
+hu - Hungarian,
+sv - Swedish,
+da - Danish,
+fi - Finnish,
+no - Norwegian,
+he - Hebrew.
 
 --------------------------------------------------------------------------------------------------
 **English** | [中文](README_zh.md)
