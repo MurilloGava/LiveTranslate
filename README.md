@@ -150,8 +150,10 @@ QUICK START
 --------------------------------------------------------------------------------
 
 1. Clone the repository:
-   git clone https://github.com/MurilloGava/LiveTranslate.git
-   cd LiveTranslate
+```bash
+git clone https://github.com/MurilloGava/LiveTranslate.git
+cd LiveTranslate
+```
 
 2. Run install.bat (detects Python, creates virtual environment, installs dependencies)
 
@@ -164,7 +166,7 @@ or
 ## Quick Start
 
 ```bash
-git clone https://github.com/TheDeathDragon/LiveTranslate.git
+git clone https://github.com/MurilloGava/LiveTranslate.git
 cd LiveTranslate
 ```
 
