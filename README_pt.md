@@ -283,9 +283,9 @@ AGRADECIMENTOS
 --------------------------------------------------------------------------------
 ATUALIZAÇÃO 
 --------------------------------------------------------------------------------
-- MODO IA LOCAL
-- A Janela de Legendas agora pode ser totalmente arrastada pelo usuário utilizando o mouse (maior flexibilidade da interface e controle de posicionamento).
-
+* Suporte aprimorado para provedores locais de IA (Ollama e LM Studio), aumentando a compatibilidade e a estabilidade com endpoints compatíveis com a OpenAI.
+* A janela de legendas agora pode ser totalmente arrastada pelo usuário com o mouse (maior flexibilidade da interface e controle de posicionamento).
+* 
 --------------------------------------------------------------------------------
 LICENÇA
 --------------------------------------------------------------------------------
