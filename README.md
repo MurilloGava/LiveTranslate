@@ -39,6 +39,8 @@ REQUIREMENTS DOWNLOADS:
 - Download: cuDNN (NVIDIA) – GPU acceleration library for AI (CUDA)
 - *If necessary, place these all folders in the directory.* *C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4*
 https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
+
+*If you are using local AI, choose LM Studio or Ollama.*
 - LM Studio: https://lmstudio.ai/download
 - Ollama: https://ollama.com/download/windows
 
