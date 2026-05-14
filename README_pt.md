@@ -202,14 +202,21 @@ CONFIGURAÇÃO DA API DE TRADUÇÃO
 
 Settings → Translation tab:
 
-Local
+Local 1 Ollama:
 | Parameter | Example |
 |-----------|---------|
 | API Base | `http://127.0.0.1:11434` |
-| API Key | ollama |
+| API Key | `ollama` |
 | Model | `qwen2.5:0.5b` |
 | Proxy | `none` / `system` / custom URL |
 
+Local 2 LM Studio:
+| Parameter | Example |
+|-----------|---------|
+| API Base | `http://127.0.0.1:1234/v1` |
+| API Key | `lm-studio` |
+| Model | `qwen2.5:0.5b` |
+| Proxy | `none` / `system` / custom URL |
 
 Online
 | Parameter | Example |
@@ -219,28 +226,6 @@ Online
 | Model | `deepseek-chat` |
 | Proxy | `none` / `system` / custom URL |
 
-
-
-Abra Configurações -> Guia Tradução: (Settings → Translation tab:)
-
-1° opção Local Ollama:
-- API Base: http://127.0.0.1:11434
-- API Key: ollama
-- Model: qwen2.5:0.5b (exemplo)
-- Proxy: none / system / URL personalizada
-
-2° opção Local LM Studio:
-- API Base: http://127.0.0.1:1234/v1
-- API Key: lm-studio
-- Model: qwen2.5:0.5b (exemplo)
-- Proxy: none / system / URL personalizada
-
-
-3° opção Online:
-- API Base: https://api.deepseek.com/v1 (exemplo)
-- API Key: Sua chave
-- Model: deepseek-chat (exemplo)
-- Proxy: none / system / URL personalizada
 
 ![LiveTranslate](screenshot/edit-model.png)
 
