@@ -20,11 +20,18 @@ REQUISITOS
 - Python: 3.10 ou superior
   
 - GPU (recomendado): NVIDIA com CUDA 12.4 (RTX 30xx requer CUDA 12.4) 
-- Download: CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
-- Download: cuDNN (NVIDIA) – Biblioteca de aceleração para IA em GPU (CUDA) https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
 
 - Rede: conexão opcional para uso de APIs de tradução
 - LLM (opcional): Ollama, LM Studio ou provedores online compatíveis com API OpenAI
+
+--------------------------------------------------------------------------------
+DOWNLOADS REQUISITOS:
+--------------------------------------------------------------------------------
+
+- Download: CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
+- Download: cuDNN (NVIDIA) – Biblioteca de aceleração para IA em GPU (CUDA) https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
+- LM Studio: https://lmstudio.ai/download
+- Ollama: https://ollama.com/download/windows
 
 --------------------------------------------------------------------------------
 FUNCIONALIDADES
@@ -68,8 +75,8 @@ LM Studio:
   http://127.0.0.1:1234/v1
 
 Ollama:
-  http://localhost:11434/v1
-  http://127.0.0.1:11434/v1
+  http://localhost:11434
+  http://127.0.0.1:11434
 
 OpenAI (official):
   https://api.openai.com/v1
@@ -132,7 +139,7 @@ INSTALAÇÃO RÁPIDA
 --------------------------------------------------------------------------------
 
 1. Clone o repositório:
-   git clone https://github.com/TheDeathDragon/LiveTranslate.git
+   git clone https://github.com/MurilloGava/LiveTranslate.git
    cd LiveTranslate
 
 2. Execute install.bat (detecta Python, cria ambiente virtual, instala dependências)
@@ -156,6 +163,20 @@ CONFIGURAÇÃO DA API DE TRADUÇÃO
 
 Abra Configurações -> Guia Tradução:
 
+1° opção Local Ollama:
+- API Base: http://127.0.0.1:11434
+- API Key: (NÃO PRECISA)
+- Model: qwen2.5:0.5b (exemplo)
+- Proxy: none / system / URL personalizada
+
+2° opção Local LM Studio:
+- API Base: http://127.0.0.1:1234/v1
+- API Key: (NÃO PRECISA)
+- Model: qwen2.5:0.5b (exemplo)
+- Proxy: none / system / URL personalizada
+
+
+3° opção Online:
 - API Base: https://api.deepseek.com/v1 (exemplo)
 - API Key: Sua chave
 - Model: deepseek-chat (exemplo)
