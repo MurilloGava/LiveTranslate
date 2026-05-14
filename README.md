@@ -216,14 +216,8 @@ FIRST LAUNCH
 --------------------------------------------------------------------------------
 TRANSLATION API SETUP
 --------------------------------------------------------------------------------
-## First Launch
-
-1. Setup wizard appears — choose download source (ModelScope / HuggingFace) and cache path
-2. Silero VAD + SenseVoice models download automatically (~1GB)
-3. Main UI appears when ready
 
 ## Translation API
-
 
 Settings → Translation tab:
 
