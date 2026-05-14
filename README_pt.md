@@ -162,23 +162,6 @@ Para atualizar: execute update.bat
 INSTALAÇÃO MANUAL
 --------------------------------------------------------------------------------
 
-## Quick Start
-
-```bash
-git clone https://github.com/MurilloGava/LiveTranslate.git
-cd LiveTranslate
-```
-
-Double-click **`install.bat`** — the installer will:
-1. Detect Python 3.10+ (auto-install via winget if missing)
-2. Create a virtual environment
-3. Auto-detect NVIDIA GPU and let you choose CUDA / CPU PyTorch
-4. Install all dependencies
-
-Then double-click **`start.bat`** to launch.
-
-To update, double-click **`update.bat`** — it will pull the latest code and update dependencies (auto-installs Git via winget if missing).
-
 <details>
 <summary>Manual install</summary>
 
@@ -202,6 +185,7 @@ pip install funasr --no-deps
 > FunASR uses `--no-deps` because `editdistance` requires a C++ compiler. `editdistance-s` in `requirements.txt` is a pure-Python drop-in replacement.
 
 </details>
+
 --------------------------------------------------------------------------------
 PRIMEIRA INICIALIZAÇÃO
 --------------------------------------------------------------------------------
