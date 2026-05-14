@@ -295,8 +295,8 @@ main.py                 Entry point & pipeline
 --------------------------------------------------------------------------------
 UPDATE
 --------------------------------------------------------------------------------
-- LOCAL AI MODE
-- USER HAS FULL CONTROL OF THE SUBTITLE BAR POSITION IN THE user_settings.json FILE
+* Improved support for local AI providers (Ollama and LM Studio), enhancing compatibility and stability with OpenAI-compatible endpoints
+* Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
 
   
 ## License
