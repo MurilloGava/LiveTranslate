@@ -80,8 +80,8 @@ LM Studio:
   "api_key": "lm-studio"
 
 Ollama:
-  http://localhost:11434
-  http://127.0.0.1:11434
+  http://localhost:11434/v1
+  http://127.0.0.1:11434/v1
   "api_key": "ollama"
 
 OpenAI（官方）:
@@ -197,7 +197,7 @@ he   | 希伯来语
 本地 1 - Ollama：
 | 参数       | 示例                        |
 |------------|-----------------------------|
-| API 地址   | http://127.0.0.1:11434      |
+| API 地址   | http://127.0.0.1:11434/v1   |
 | API 密钥   | ollama                      |
 | 模型       | qwen2.5:0.5b                |
 | 代理       | none / system / 自定义 URL  |
