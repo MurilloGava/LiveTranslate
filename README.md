@@ -35,9 +35,9 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 REQUIREMENTS DOWNLOADS:
 --------------------------------------------------------------------------------
-
-- Download: CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
-- Download: cuDNN (NVIDIA) – GPU acceleration library for AI (CUDA)
+- Python 3.11.9: https://www.python.org/downloads/release/pymanager-262/
+- CUDA Toolkit 12.4 (NVIDIA CUDA). https://developer.nvidia.com/cuda-12-4-0-download-archive
+- cuDNN (NVIDIA) – GPU acceleration library for AI (CUDA)
 - *If necessary, place these all folders in the directory.* *C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4*
 https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip
 
