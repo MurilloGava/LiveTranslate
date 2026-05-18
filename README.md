@@ -204,7 +204,7 @@ Local 2 LM Studio:
 |-----------|---------|
 | API Base | `http://127.0.0.1:1234/v1` |
 | API Key | `lm-studio` |
-| Model | `qwen2.5:0.5b` |
+| Model | `qwen2.5-0.5b-instruct` |
 | Proxy | `none` / `system` / custom URL |
 
 Online
