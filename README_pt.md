@@ -16,6 +16,15 @@ Não precisa modificar o player.
 ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Windows](https://img.shields.io/badge/Platform-Windows-0078d4)
 ![License](https://img.shields.io/badge/License-MIT-green)
+
+
+--------------------------------------------------------------------------------
+## Vídeo Tutorial
+![LiveTranslate](screenshot/install-video.png)
+
+- [YOUTUBE English](https://www.youtube.com/watch?v=iVIpADET9Fg) 
+- [YOUTUBE Português](https://www.youtube.com/watch?v=Br_bcuYhRik)
+- [BILIBILI 中文](https://www.bilibili.com/video/BV1K2Awz6Euw)
 --------------------------------------------------------------------------------
 REQUISITOS
 --------------------------------------------------------------------------------
