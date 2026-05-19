@@ -253,10 +253,12 @@ Example:
 
 --------------------------------------------------------------------------------
 ## Video Install
+![LiveTranslate](screenshot/install-video.png)
 
-- [![中文](https://www.bilibili.com/video/BV1K2Awz6Euw)
 - [English](https://www.youtube.com/watch?v=iVIpADET9Fg)
 - [Português](https://www.youtube.com/watch?v=Br_bcuYhRik)
+- [![中文](https://www.bilibili.com/video/BV1K2Awz6Euw)
+
 
 --------------------------------------------------------------------------------
 PROJECT ARCHITECTURE
