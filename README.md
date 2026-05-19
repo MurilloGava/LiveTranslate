@@ -252,7 +252,7 @@ Example:
 
 
 --------------------------------------------------------------------------------
-## Video Install
+## Video Tutorial
 ![LiveTranslate](screenshot/install-video.png)
 
 - [YOUTUBE English](https://www.youtube.com/watch?v=iVIpADET9Fg) 
