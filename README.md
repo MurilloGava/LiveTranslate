@@ -299,7 +299,8 @@ UPDATE
 --------------------------------------------------------------------------------
 * Improved support for local AI providers (Ollama and LM Studio), enhancing compatibility and stability with OpenAI-compatible endpoints
 * Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
-- *[MurilloGava](https://github.com/MurilloGava)*
+  
+'*[MurilloGava](https://github.com/MurilloGava)*'
 
   
 ## License
