@@ -255,9 +255,9 @@ Example:
 ## Video Install
 ![LiveTranslate](screenshot/install-video.png)
 
-- [English](https://www.youtube.com/watch?v=iVIpADET9Fg)
-- [Português](https://www.youtube.com/watch?v=Br_bcuYhRik)
-- [![中文](https://www.bilibili.com/video/BV1K2Awz6Euw)
+- [YOUTUBE English](https://www.youtube.com/watch?v=iVIpADET9Fg) 
+- [YOUTUBE Português](https://www.youtube.com/watch?v=Br_bcuYhRik)
+- [BILIBILI 中文](https://www.bilibili.com/video/BV1K2Awz6Euw)
 
 
 --------------------------------------------------------------------------------
