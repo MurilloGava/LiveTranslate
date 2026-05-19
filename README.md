@@ -295,10 +295,11 @@ main.py                 Entry point & pipeline
 - [Silero VAD](https://github.com/snakers4/silero-vad) — Voice activity detection
 
 --------------------------------------------------------------------------------
-UPDATE
+UPDATE 
 --------------------------------------------------------------------------------
 * Improved support for local AI providers (Ollama and LM Studio), enhancing compatibility and stability with OpenAI-compatible endpoints
 * Subtitle Window is now fully draggable by the user using mouse drag (improved UI flexibility and positioning control)
+*[MurilloGava](https://github.com/MurilloGava)*
 
   
 ## License
