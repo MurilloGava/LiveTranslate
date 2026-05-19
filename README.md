@@ -254,9 +254,9 @@ Example:
 --------------------------------------------------------------------------------
 ## Video
 
-[![Install & Demo](https://img.shields.io/badge/Bilibili-Install%20%26%20Demo-00A1D6?logo=bilibili)](https://www.bilibili.com/video/BV1K2Awz6Euw)
-
-
+[![中文 Install & Demo](https://img.shields.io/badge/Bilibili-Install%20%26%20Demo-00A1D6?logo=bilibili)](https://www.bilibili.com/video/BV1K2Awz6Euw)
+[![English Install & Demo](https://www.youtube.com/watch?v=iVIpADET9Fg)
+[![English Install & Português](https://www.youtube.com/watch?v=Br_bcuYhRik)
 
 --------------------------------------------------------------------------------
 PROJECT ARCHITECTURE
